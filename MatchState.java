@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class GameState {
+public class MatchState {
    public PlayerState lPlayer, rPlayer;
    public BallState ball;
 
@@ -12,7 +12,7 @@ public class GameState {
    public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<>(GameEvent.class);
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
 
-   public GameState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
+   public MatchState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
       lPlayer = new PlayerState(PlayerState.Side.LEFT, lInput, gameProps, physProps);
       rPlayer = new PlayerState(PlayerState.Side.RIGHT, rInput, gameProps, physProps);
       ball = new BallState(gameProps, physProps);
