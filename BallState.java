@@ -1,5 +1,5 @@
 public class BallState {
-   public PhysicsConstants physics;
+   public PhysicsProperties physics;
    public GameProperties game;
 
    public long initX, initY;
@@ -9,17 +9,17 @@ public class BallState {
 
    public PhysicsCircle pCircle;
 
-   public BallState(GameProperties gameProps, PhysicsConstants physProps) {
+   public BallState(GameProperties gameProps, PhysicsProperties physProps) {
       physics = physProps;
       game = gameProps;
 
-      initX = game.initX;
-      initY = game.initY;
+      initX = game.ballInitX;
+      initY = game.ballInitY;
       minX = -game.sideWidth;
       maxX = game.sideWidth;
       netHeight = game.netHeight;
 
-      pCircle = new pCircle(game.ballRadius);
+      pCircle = new PhysicsCircle(game.ballRadius);
       pCircle.accY = -physics.ballGravity;
 
       reset();
@@ -39,15 +39,13 @@ public class BallState {
 
       pCircle.step();
 
-      long x = pCircle.posX, y = pCircle.posY;
-
       hitGround |= pCircle.collideHorzPlane(0, true);
       pCircle.collideVertPlane(minX, true);
       pCircle.collideVertPlane(maxX, true);
-      if (pCircle.y <= netHeight) {
+      if (pCircle.posY <= netHeight) {
          pCircle.collideVertPlane(0, true);
       } else {
-         pCircle.collideCircle(0, netHeight, 0);
+         pCircle.collideCircle(0, netHeight, 0, 0);
       }
    }
 }

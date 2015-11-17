@@ -3,7 +3,7 @@ public class PhysicsObject {
    long velX = 0, velY = 0;
    long accX = 0, accY = 0;
 
-   public PysicsObject() {}
+   public PhysicsObject() {}
 
    public PhysicsObject(long x, long y) {
       posX = x;

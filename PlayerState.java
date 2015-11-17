@@ -12,40 +12,46 @@ public class PlayerState {
    public GameProperties game;
    public Side side;
 
+   public PlayerInputProvider input;
+   
    public long sideWidth, playerRadius;
    public boolean playerBounce;
 
-   public PhysicsObject pCircle = new PhysicsObject();
+   public PhysicsCircle pCircle;
 
-   public PlayerState(Side side_, GameProperties gameProps, PhysicsProperties physProps) {
+   public PlayerState(Side side_, PlayerInputProvider input_, GameProperties gameProps, PhysicsProperties physProps) {
       physics = physProps;
       game = gameProps;
       side = side_;
+      
+      input = input_;
 
       sideWidth = game.sideWidth;
-      playerRadius = game.playerRadius;
-      playerBounce = game.playerBounce;
+      playerBounce = physics.playerBounce;
+
+      pCircle = new PhysicsCircle(game.playerRadius);
 
       reset();
    }
 
    public void reset() {
       pCircle.posX = side.translateX(sideWidth/2);
-      pCircle.posY = playerRadius;
+      pCircle.posY = pCircle.radius;
    }
 
-   public void step(PlayerInput input) {
-      if (input.up) {
-         if (posY == 0) {
-            pCircle.velY = phsyics.playerJumpVelocity;
+   public void step() {
+      PlayerInput in = input.getInput();
+      if (in.up) {
+         if (pCircle.posY == 0) {
+            pCircle.velY = physics.playerJumpVelocity;
          }
          pCircle.accY = -physics.playerReducedGravity;
       } else {
          pCircle.accY = -physics.playerGravity;
       }
 
-      pCircle.velX = (input.right ? phsyics.playerHorizontalSpeed : 0) -
-                  (input.left  ? physics.playerHorizontalSpeed : 0);
+      pCircle.velX = (in.right ? physics.playerHorizontalSpeed : 0) -
+                  (in.left  ? physics.playerHorizontalSpeed : 0);
 
       pCircle.step();
 

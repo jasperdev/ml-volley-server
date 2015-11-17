@@ -5,7 +5,12 @@ public class PhysicsCircle extends PhysicsObject {
       radius = radius_;
    }
 
-   public boolean collideVertPlane(int x, boolean elastic) {
+   public PhysicsCircle(long x, long y, long radius_) {
+      super(x,y);
+      radius = radius_;
+   }
+
+   public boolean collideVertPlane(long x, boolean elastic) {
       long dx = posX - x;
       if (Math.abs(dx) > radius) {
          return false;
@@ -17,7 +22,7 @@ public class PhysicsCircle extends PhysicsObject {
       return true;
    }
 
-   public boolean collideHorzPlane(int y, boolean elastic) {
+   public boolean collideHorzPlane(long y, boolean elastic) {
       long dy = posY - y;
       if (Math.abs(dy) > radius) {
          return false;
@@ -29,12 +34,12 @@ public class PhysicsCircle extends PhysicsObject {
       return true;
    }
 
-   public boolean collideCircle(long x, long y, long r) {
+   public boolean collideCircle(long x, long y, long r, long goalVel) {
       //TODO
       return false;
    }
 
-   public boolean collideCircle(PhysicsCircle o) {
-      return collideCircle(o.posX, o.posY, o.radius);
+   public boolean collideCircle(PhysicsCircle o, long goalVel) {
+      return collideCircle(o.posX, o.posY, o.radius, goalVel);
    }
 }

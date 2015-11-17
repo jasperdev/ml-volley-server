@@ -1,66 +1,58 @@
-import java.util.EnumMap;
+import java.util.*;
 
 public class GameState {
-   public enum GameEvent {
-      BALL_HIT_L,
-      BALL_HIT_R,
-      SCORE_L,
-      SCORE_R;
-   }
-
    public PlayerState lPlayer, rPlayer;
    public BallState ball;
-   public PlayerInputProvider lInput, rInput;
 
    public final int maxHits;
    public int hitCount;
+   public long collisionVelocity;
 
-   public EnumMap observerMap = new EnumMap<GameState, Collection<GameObserver>>();
+   public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<>(GameEvent.class);
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
 
-   public GameState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput_, PlayerInputProvider rInput_) {
-      lPlayer = new PlayerState(PlayerState.Side.LEFT, gameProps, physProps);
-      rPlayer = new PlayerState(PlayerState.Side.RIGHT, gameProps, physProps);
+   public GameState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
+      lPlayer = new PlayerState(PlayerState.Side.LEFT, lInput, gameProps, physProps);
+      rPlayer = new PlayerState(PlayerState.Side.RIGHT, rInput, gameProps, physProps);
       ball = new BallState(gameProps, physProps);
 
-      lInput = lInput_;
-      rInput = rInput_;
       maxHits = gameProps.maxHits;
+      collisionVelocity = gameProps.playerCollisionVelocity;
    }
 
-   public void init() {
-      lPlayer.init();
-      rPlayer.init();
-      ball.init();
+   public void reset() {
+      lPlayer.reset();
+      rPlayer.reset();
+      ball.reset();
       hitCount = 0;
    }
 
    public void registerLeftHit() {
-      notifyObservers(BALL_HIT_L);
+      notifyObservers(GameEvent.BALL_HIT_L);
       hitCount = Math.min(hitCount,0)-1;
    }
    public void registerRightHit() {
-      notifyObservers(BALL_HIT_R);
+      notifyObservers(GameEvent.BALL_HIT_R);
       hitCount = Math.max(hitCount,0)+1;
    }
 
    public void step() {
       ball.step();
-      lPlayer.step(lInput.getInput());
-      rPlayer.step(rInput.getInput());
+      lPlayer.step();
+      rPlayer.step();
       if (ball.hitGround) {
-         notifyObservers(ball.pCircle.posX > 0 ? SCORE_L : SCORE_R);
+         notifyObservers(ball.pCircle.posX > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);
          return;
       }
 
-      if (ball.collideCircle(lPlayer)) {
+      if (ball.pCircle.collideCircle(lPlayer.pCircle,collisionVelocity)) {
          registerLeftHit();
       }
-      if (ball.collideCircle(rPlayer)) {
+      if (ball.pCircle.collideCircle(rPlayer.pCircle,collisionVelocity)) {
          registerRightHit();
       }
       if (Math.abs(hitCount) > maxHits) {
-         notifyObservers(hitCount > 0 ? SCORE_L : SCORE_R);
+         notifyObservers(hitCount > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);
          return;
       }
    }

@@ -8,5 +8,7 @@ public class GameProperties {
 
    public long playerRadius;
 
-   public long maxHits;
+   public int maxHits;
+   
+   public long playerCollisionVelocity;
 }

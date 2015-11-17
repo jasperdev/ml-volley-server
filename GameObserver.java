@@ -1,3 +1,3 @@
 public interface GameObserver {
-   public void observe(GameState.GameEvent e);
+   public void observe(GameEvent e);
 }
