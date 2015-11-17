@@ -34,12 +34,24 @@ public class PhysicsCircle extends PhysicsObject {
       return true;
    }
 
-   public boolean collideCircle(long x, long y, long r, long goalVel) {
-      //TODO
-      return false;
+   public boolean collideCircle(long x, long y, long r, long goalSpeed) {
+      long dx = x-posX, dy = y-posY;
+      if (dx*dx + dy*dy > r*r) {
+         return false;
+      }
+      if (goalSpeed == 0) {
+         goalSpeed = velX*velX + velY*velY;
+      }
+      
+      
+      //TODO Is this good enough?
+      double scaleFactor = goalSpeed / Math.sqrt(dx*dx + dy*dy);
+      velX = Math.round(scaleFactor * dx);
+      velY = Math.round(scaleFactor * dy);
+      return true;
    }
 
-   public boolean collideCircle(PhysicsCircle o, long goalVel) {
-      return collideCircle(o.posX, o.posY, o.radius, goalVel);
+   public boolean collideCircle(PhysicsCircle o, long goalSpeed) {
+      return collideCircle(o.posX, o.posY, o.radius, goalSpeed);
    }
 }
