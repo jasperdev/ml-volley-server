@@ -7,6 +7,7 @@ public class GameState {
    public final int maxHits;
    public int hitCount;
    public long collisionVelocity;
+   public boolean matchFinished;
 
    public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<>(GameEvent.class);
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
@@ -25,13 +26,16 @@ public class GameState {
       rPlayer.reset();
       ball.reset();
       hitCount = 0;
+      matchFinished = false;
    }
 
    public void registerLeftHit() {
+      ball.firstHit = false;
       notifyObservers(GameEvent.BALL_HIT_L);
       hitCount = Math.min(hitCount,0)-1;
    }
    public void registerRightHit() {
+      ball.firstHit = false;
       notifyObservers(GameEvent.BALL_HIT_R);
       hitCount = Math.max(hitCount,0)+1;
    }
