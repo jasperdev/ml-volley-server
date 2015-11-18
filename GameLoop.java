@@ -20,7 +20,7 @@ public class GameLoop {
                long tmp = sleepTime * MS_PER_SEC;
                long sleepTimeMs = tmp / NS_PER_SEC;
                int sleepTimeNs = (int) (sleepTime % (NS_PER_SEC/MS_PER_SEC));
-               System.err.printf("Sleeping for %dms + %dns\n",sleepTimeMs,sleepTimeNs);
+               //System.err.printf("Sleeping for %dms + %dns\n",sleepTimeMs,sleepTimeNs);
                Thread.sleep(sleepTimeMs, sleepTimeNs);
             } catch (InterruptedException e) {
                System.err.println("Sleep interrupted? "+e);

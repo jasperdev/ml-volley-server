@@ -30,6 +30,7 @@ public class BallState {
    public void reset() {
       pCircle.posX = side.translateX(initX);
       pCircle.posY = initY;
+      pCircle.velX = pCircle.velY = 0;
       firstHit = true;
       hitGround = false;
    }

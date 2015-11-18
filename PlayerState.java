@@ -37,6 +37,7 @@ public class PlayerState {
    public void reset() {
       pCircle.posX = side.translateX(sideWidth/2);
       pCircle.posY = pCircle.radius;
+      pCircle.velX = pCircle.velY = 0;
    }
 
    public void step() {

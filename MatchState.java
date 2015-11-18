@@ -76,13 +76,12 @@ public class MatchState {
    }
 
    private void notifyObservers(GameEvent e) {
-      if (!observerMap.containsKey(e)) {
-         return;
+      if (observerMap.containsKey(e)) {
+         for (GameObserver o : observerMap.get(e)) {
+            o.observe(e);
+         }
       }
 
-      for (GameObserver o : observerMap.get(e)) {
-         o.observe(e);
-      }
 
       for (GameObserver o : globalObservers) {
          o.observe(e);

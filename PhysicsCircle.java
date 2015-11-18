@@ -46,7 +46,7 @@ public class PhysicsCircle extends PhysicsObject {
    }
 
    public boolean collideCircle(long x, long y, long r, long goalSpeed) {
-      long dx = x-posX, dy = y-posY;
+      long dx = posX-x, dy = posY-y;
       if (dx*dx + dy*dy > r*r) {
          return false;
       }
