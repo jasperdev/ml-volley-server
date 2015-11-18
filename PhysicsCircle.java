@@ -10,6 +10,17 @@ public class PhysicsCircle extends PhysicsObject {
       radius = radius_;
    }
 
+   public boolean collideFloor(long y, boolean elastic) {
+      if (posY > y + radius) {
+         return false;
+      }
+
+      posY = y + radius;
+      velY = elastic ? -velY : 0;
+
+      return true;
+   }
+
    public boolean collideVertPlane(long x, boolean elastic) {
       long dx = posX - x;
       if (Math.abs(dx) > radius) {

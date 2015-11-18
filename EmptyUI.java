@@ -10,19 +10,19 @@ public class EmptyUI implements UI {
 
    @Override
    public void init(GameState state) {
-      System.err.println("ui.init:");
+      //System.err.println("ui.init:");
       printState(state);
    }
 
    @Override
    public void display(GameState state) {
-      System.err.println("ui.display:");
+      //System.err.println("ui.display:");
       printState(state);
    }
 
    @Override
    public void finish(GameState state) {
-      System.err.println("ui.finish:");
+      //System.err.println("ui.finish:");
       printState(state);
    }
 }

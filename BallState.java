@@ -41,7 +41,7 @@ public class BallState {
 
       pCircle.step();
 
-      hitGround |= pCircle.collideHorzPlane(0, true);
+      hitGround |= pCircle.collideFloor(0, true);
       pCircle.collideVertPlane(minX, true);
       pCircle.collideVertPlane(maxX, true);
       if (pCircle.posY <= netHeight) {

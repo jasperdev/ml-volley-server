@@ -2,3 +2,4 @@
 .idea/
 ml-volley-server.iml
 out/
+*.swp

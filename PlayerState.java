@@ -42,7 +42,7 @@ public class PlayerState {
    public void step() {
       PlayerInput in = input.getInput();
       if (in.up) {
-         if (pCircle.posY == 0) {
+         if (pCircle.velY == 0) {
             pCircle.velY = physics.playerJumpVelocity;
          }
          pCircle.accY = -physics.playerReducedGravity;
@@ -55,7 +55,7 @@ public class PlayerState {
 
       pCircle.step();
 
-      pCircle.collideHorzPlane(0, playerBounce);
+      pCircle.collideFloor(0, playerBounce);
       pCircle.collideVertPlane(0, false);
       pCircle.collideVertPlane(-sideWidth, false);
       pCircle.collideVertPlane(sideWidth, false);

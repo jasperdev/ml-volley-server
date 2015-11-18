@@ -4,8 +4,8 @@ public class GameProperties {
    public long netHeight = 100000; // ???
 
    public long ballRadius = 31500;
-   public long ballInitX = netHeight;
-   public long ballInitY = sideWidth/2;
+   public long ballInitX = sideWidth/2;
+   public long ballInitY = netHeight;
 
    public long playerRadius = 89000;
    
