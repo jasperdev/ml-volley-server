@@ -25,6 +25,7 @@ public class MatchState {
       lPlayer.reset();
       rPlayer.reset();
       ball.reset();
+
       hitCount = 0;
       matchFinished = false;
    }
@@ -45,6 +46,7 @@ public class MatchState {
       lPlayer.step();
       rPlayer.step();
       if (ball.hitGround) {
+         matchFinished = true;
          notifyObservers(ball.pCircle.posX > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);
          return;
       }
@@ -56,6 +58,7 @@ public class MatchState {
          registerRightHit();
       }
       if (Math.abs(hitCount) > maxHits) {
+         matchFinished = true;
          notifyObservers(hitCount > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);
          return;
       }

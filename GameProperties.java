@@ -1,14 +1,15 @@
+// These values are roughly the same as those in Blobby Volley.
 public class GameProperties {
-   public long sideWidth;
-   public long netHeight;
+   public long sideWidth = 400000;
+   public long netHeight = 100000; // ???
 
-   public long ballRadius;
-   public long ballInitX;
-   public long ballInitY;
+   public long ballRadius = 31500;
+   public long ballInitX = netHeight;
+   public long ballInitY = sideWidth/2;
 
-   public long playerRadius;
-
-   public int maxHits;
+   public long playerRadius = 89000;
    
-   public long playerCollisionVelocity;
+   public long playerCollisionVelocity = 9000; // ???
+
+   public int maxHits = 4;
 }
