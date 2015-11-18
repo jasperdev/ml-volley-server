@@ -3,13 +3,11 @@ public class GameProperties {
    public long sideWidth = 400000;
    public long netHeight = 200000; // ???
 
-   public long ballRadius = 31500;
+   public long ballRadius = 10000;
    public long ballInitX = sideWidth/2;
    public long ballInitY = netHeight;
 
-   public long playerRadius = 89000;
-   
-   public long playerCollisionVelocity = 90000; // ???
+   public long playerRadius = 20000;
 
    public int maxHits = 4;
 }

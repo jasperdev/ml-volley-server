@@ -41,7 +41,7 @@ public class GameLoop {
       PlayerInputProvider lInput = new EmptyInputProvider(), rInput = new EmptyInputProvider();
       GameState game = new GameState(gameProps, physProps, lInput, rInput);
 
-      UI ui = new EmptyUI();
+      UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps));
 
       run(60, ui, game);
    }

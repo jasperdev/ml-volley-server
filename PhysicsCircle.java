@@ -59,6 +59,9 @@ public class PhysicsCircle extends PhysicsObject {
       double scaleFactor = goalSpeed / Math.sqrt(dx*dx + dy*dy);
       velX = Math.round(scaleFactor * dx);
       velY = Math.round(scaleFactor * dy);
+
+      step();
+
       return true;
    }
 

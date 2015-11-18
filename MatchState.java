@@ -18,7 +18,7 @@ public class MatchState {
       ball = new BallState(gameProps, physProps);
 
       maxHits = gameProps.maxHits;
-      collisionVelocity = gameProps.playerCollisionVelocity;
+      collisionVelocity = physProps.playerCollisionVelocity;
    }
 
    public void reset() {

@@ -1,6 +1,6 @@
 // These values should be roughly the same as those in Blobby Volley.
 public class PhysicsProperties {
-   public long playerMaxHeight = 150000;
+   public long playerMaxHeight = 250000;
 
    // Initial velocity when a player jumps.
    public long playerJumpVelocity = 15100;
@@ -21,4 +21,6 @@ public class PhysicsProperties {
 
    // Gravity that affects the ball. This should be positive.
    public long ballGravity = 287;
+
+   public long playerCollisionVelocity = 15000; // ???
 }
