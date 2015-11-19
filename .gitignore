@@ -7,9 +7,6 @@ build/
 # Ignore Gradle GUI config
 gradle-app.setting
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
 
 ### Java ###
 *.class
@@ -175,3 +172,6 @@ Temporary Items
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
