@@ -15,7 +15,9 @@ public class PhysicsCircle extends PhysicsObject {
          return false;
       }
 
-      posY = y + radius;
+      if (!elastic) {
+         posY = y + radius;
+      }
       velY = elastic ? -velY : 0;
 
       return true;
@@ -27,7 +29,9 @@ public class PhysicsCircle extends PhysicsObject {
          return false;
       }
 
-      posX = x + (dx > 0 ? radius : -radius);
+      if (!elastic) {
+         posX = x + (dx > 0 ? radius : -radius);
+      }
       velX = elastic ? -velX : 0;
 
       return true;
@@ -39,7 +43,9 @@ public class PhysicsCircle extends PhysicsObject {
          return false;
       }
 
-      posY = y + (dy > 0 ? radius : -radius);
+      if (!elastic) {
+         posY = y + (dy > 0 ? radius : -radius);
+      }
       velY = elastic ? -velY : 0;
 
       return true;
@@ -47,11 +53,11 @@ public class PhysicsCircle extends PhysicsObject {
 
    public boolean collideCircle(long x, long y, long r, long goalSpeed) {
       long dx = posX-x, dy = posY-y;
-      if (dx*dx + dy*dy > r*r) {
+      if (dx*dx + dy*dy > (r+radius)*(r+radius)) {
          return false;
       }
       if (goalSpeed == 0) {
-         goalSpeed = velX*velX + velY*velY;
+         goalSpeed = Math.round(Math.sqrt(velX*velX + velY*velY));
       }
       
       
@@ -60,7 +66,9 @@ public class PhysicsCircle extends PhysicsObject {
       velX = Math.round(scaleFactor * dx);
       velY = Math.round(scaleFactor * dy);
 
-      step();
+      while (((posX-x)*(posX-x) + (posY-y)*(posY-y)) <= (r+radius)*(r+radius)) {
+         step();
+      }
 
       return true;
    }

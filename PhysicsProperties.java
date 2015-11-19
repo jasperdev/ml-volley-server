@@ -22,5 +22,5 @@ public class PhysicsProperties {
    // Gravity that affects the ball. This should be positive.
    public long ballGravity = 287;
 
-   public long playerCollisionVelocity = 15000; // ???
+   public long playerCollisionVelocity = playerJumpVelocity; // ???
 }

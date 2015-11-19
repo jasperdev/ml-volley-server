@@ -9,12 +9,12 @@ public class MatchState {
    public long collisionVelocity;
    public boolean matchFinished;
 
-   public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<>(GameEvent.class);
+   public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<GameEvent, Collection<GameObserver>>(GameEvent.class);
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
 
    public MatchState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
-      lPlayer = new PlayerState(PlayerState.Side.LEFT, lInput, gameProps, physProps);
-      rPlayer = new PlayerState(PlayerState.Side.RIGHT, rInput, gameProps, physProps);
+      lPlayer = new PlayerState(Side.LEFT, lInput, gameProps, physProps);
+      rPlayer = new PlayerState(Side.RIGHT, rInput, gameProps, physProps);
       ball = new BallState(gameProps, physProps);
 
       maxHits = gameProps.maxHits;

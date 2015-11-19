@@ -28,6 +28,7 @@ public class GameLoop {
          }
          
          for ( ; sleepTime < 0; sleepTime += framePeriod) {
+            System.err.println("Uh oh... catching up.");
             state.step();
          }
       }
@@ -38,10 +39,13 @@ public class GameLoop {
    public static void main(String[] args) {
       GameProperties gameProps = new GameProperties();
       PhysicsProperties physProps = new PhysicsProperties();
-      PlayerInputProvider lInput = new EmptyInputProvider(), rInput = new EmptyInputProvider();
-      GameState game = new GameState(gameProps, physProps, lInput, rInput);
 
-      UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps));
+      StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
+      BallFollower ai = new BallFollower(null, Side.RIGHT);
+      UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps, lInput, null));
+
+      GameState game = new GameState(gameProps, physProps, lInput, ai);
+      ai.game = game;
 
       run(60, ui, game);
    }

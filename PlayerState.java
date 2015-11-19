@@ -1,13 +1,4 @@
 public class PlayerState {
-   public enum Side { 
-      LEFT(-1),
-      RIGHT(1);
-
-      private int scale;
-      Side(int scale) { this.scale = scale; }
-      public long translateX(long x) { return scale*x; }
-   }
-
    public PhysicsProperties physics;
    public GameProperties game;
    public Side side;

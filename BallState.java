@@ -6,7 +6,7 @@ public class BallState {
    public long minX, maxX, netHeight;
    public boolean firstHit = true;
    public boolean hitGround = false;
-   public PlayerState.Side side;
+   public Side side;
 
    public PhysicsCircle pCircle;
 
@@ -22,7 +22,7 @@ public class BallState {
 
       pCircle = new PhysicsCircle(game.ballRadius);
       pCircle.accY = -physics.ballGravity;
-      side = PlayerState.Side.RIGHT;
+      side = Side.RIGHT;
 
       reset();
    }
