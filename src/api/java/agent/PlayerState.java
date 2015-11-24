@@ -1,3 +1,5 @@
+package agent;
+
 public interface PlayerState {
     long posX();
 

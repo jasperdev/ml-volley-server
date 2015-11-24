@@ -1,6 +1,15 @@
+package agent;
+
 import java.util.Objects;
 
-public class EnsureStaticSide {
+public class ReflectingSnapshot implements GameSnapshot {
+
+    private final GameSnapshot backend;
+
+    private ReflectingSnapshot(GameSnapshot backend) {
+        this.backend = backend;
+    }
+
     public static GameSnapshot ensureSelfSide(Side mySide, GameSnapshot snapshot) {
         if (Objects.equals(mySide, snapshot.self().side())) {
             return snapshot;
@@ -9,44 +18,33 @@ public class EnsureStaticSide {
         }
     }
 
-    public static GameSnapshot ensureAlwaysLeft(GameSnapshot snapshot) {
-        return ensureSelfSide(Side.LEFT, snapshot);
+    @Override
+    public PlayerState self() {
+        return new ReflectedPlayer(backend.self());
     }
 
-    private static class ReflectingSnapshot implements GameSnapshot {
-        private final GameSnapshot backend;
+    @Override
+    public PlayerState opponent() {
+        return new ReflectedPlayer(backend.opponent());
+    }
 
-        public ReflectingSnapshot(GameSnapshot backend) {
-            this.backend = backend;
-        }
+    @Override
+    public BallState ball() {
+        return new ReflectedBall(backend.ball());
+    }
 
-        @Override
-        public PlayerState self() {
-            return new ReflectedPlayer(backend.self());
-        }
+    @Override
+    public long myScore() {
+        return backend.myScore();
+    }
 
-        @Override
-        public PlayerState opponent() {
-            return new ReflectedPlayer(backend.opponent());
-        }
-
-        @Override
-        public BallState ball() {
-            return new ReflectedBall(backend.ball());
-        }
-
-        @Override
-        public long myScore() {
-            return backend.myScore();
-        }
-
-        @Override
-        public long opponentScore() {
-            return backend.opponentScore();
-        }
+    @Override
+    public long opponentScore() {
+        return backend.opponentScore();
     }
 
     private static class ReflectedPlayer implements PlayerState {
+
         private final PlayerState playerState;
 
         public ReflectedPlayer(PlayerState playerState) {
@@ -87,6 +85,7 @@ public class EnsureStaticSide {
     }
 
     private static class ReflectedBall implements BallState {
+
         private final BallState ball;
 
         public ReflectedBall(BallState ball) {

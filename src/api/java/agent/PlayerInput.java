@@ -1,3 +1,5 @@
+package agent;
+
 public final class PlayerInput {
     public final static PlayerInput NEUTRAL = new PlayerInput(false, false, false);
     public final boolean left, right, up;
