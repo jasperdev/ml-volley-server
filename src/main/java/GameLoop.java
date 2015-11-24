@@ -41,7 +41,7 @@ public class GameLoop {
       PhysicsProperties physProps = new PhysicsProperties();
 
       StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
-      BallFollower ai = new BallFollower(null, Side.RIGHT);
+      BallFollower ai = new BallFollower(null, SideImpl.RIGHT);
       UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps, lInput, null));
 
       GameState game = new GameState(gameProps, physProps, lInput, ai);

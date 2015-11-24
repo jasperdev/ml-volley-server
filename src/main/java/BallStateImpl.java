@@ -1,4 +1,4 @@
-public class BallState {
+public class BallStateImpl {
    public PhysicsProperties physics;
    public GameProperties game;
 
@@ -6,11 +6,11 @@ public class BallState {
    public long minX, maxX, netHeight;
    public boolean firstHit = true;
    public boolean hitGround = false;
-   public Side side;
+   public SideImpl side;
 
    public PhysicsCircle pCircle;
 
-   public BallState(GameProperties gameProps, PhysicsProperties physProps) {
+   public BallStateImpl(GameProperties gameProps, PhysicsProperties physProps) {
       physics = physProps;
       game = gameProps;
 
@@ -22,7 +22,7 @@ public class BallState {
 
       pCircle = new PhysicsCircle(game.ballRadius);
       pCircle.accY = -physics.ballGravity;
-      side = Side.RIGHT;
+      side = SideImpl.RIGHT;
 
       reset();
    }

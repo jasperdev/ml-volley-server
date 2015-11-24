@@ -1,3 +1,3 @@
 public interface PlayerInputProvider {
-   public PlayerInput getInput();
+   public PlayerInputImpl getInput();
 }

@@ -1,18 +1,18 @@
-public enum Side {
+public enum SideImpl {
    LEFT(-1) {
-      public PlayerState getPlayer(GameState game) {
+      public PlayerStateImpl getPlayer(GameState game) {
          return game.match.lPlayer;
       }
    },
    RIGHT(1) {
-      public PlayerState getPlayer(GameState game) {
+      public PlayerStateImpl getPlayer(GameState game) {
          return game.match.rPlayer;
       }
    };
 
    private int scale;
 
-   Side(int scale) {
+   SideImpl(int scale) {
       this.scale = scale;
    }
 
@@ -20,5 +20,5 @@ public enum Side {
       return scale * x;
    }
 
-   public abstract PlayerState getPlayer(GameState game);
+   public abstract PlayerStateImpl getPlayer(GameState game);
 }

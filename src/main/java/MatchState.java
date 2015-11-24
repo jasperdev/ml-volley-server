@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class MatchState {
-   public PlayerState lPlayer, rPlayer;
-   public BallState ball;
+   public PlayerStateImpl lPlayer, rPlayer;
+   public BallStateImpl ball;
 
    public final int maxHits;
    public int hitCount;
@@ -13,9 +13,9 @@ public class MatchState {
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
 
    public MatchState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
-      lPlayer = new PlayerState(Side.LEFT, lInput, gameProps, physProps);
-      rPlayer = new PlayerState(Side.RIGHT, rInput, gameProps, physProps);
-      ball = new BallState(gameProps, physProps);
+      lPlayer = new PlayerStateImpl(SideImpl.LEFT, lInput, gameProps, physProps);
+      rPlayer = new PlayerStateImpl(SideImpl.RIGHT, rInput, gameProps, physProps);
+      ball = new BallStateImpl(gameProps, physProps);
 
       maxHits = gameProps.maxHits;
       collisionVelocity = physProps.playerCollisionVelocity;

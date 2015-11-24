@@ -4,7 +4,7 @@ import javax.swing.*;
 public class SwingUI extends JFrame implements UI {
    GameProperties gameProps;
    public int width, height;
-   PlayerInput lIn, rIn;
+   PlayerInputImpl lIn, rIn;
 
    class GamePanel extends JComponent {
       public GamePanel(GameProperties gameProps_) {

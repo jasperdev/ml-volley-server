@@ -1,3 +1,3 @@
-public class PlayerInput {
+public class PlayerInputImpl {
    public boolean left, right, up;
 }

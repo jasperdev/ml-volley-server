@@ -1,7 +1,7 @@
-public class PlayerState {
+public class PlayerStateImpl {
    public PhysicsProperties physics;
    public GameProperties game;
-   public Side side;
+   public SideImpl side;
 
    public PlayerInputProvider input;
    
@@ -10,7 +10,7 @@ public class PlayerState {
 
    public PhysicsCircle pCircle;
 
-   public PlayerState(Side side_, PlayerInputProvider input_, GameProperties gameProps, PhysicsProperties physProps) {
+   public PlayerStateImpl(SideImpl side_, PlayerInputProvider input_, GameProperties gameProps, PhysicsProperties physProps) {
       physics = physProps;
       game = gameProps;
       side = side_;
@@ -32,7 +32,7 @@ public class PlayerState {
    }
 
    public void step() {
-      PlayerInput in = input.getInput();
+      PlayerInputImpl in = input.getInput();
       if (in.up) {
          if (pCircle.velY == 0) {
             pCircle.velY = physics.playerJumpVelocity;

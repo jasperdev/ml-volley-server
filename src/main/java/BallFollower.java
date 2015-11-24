@@ -1,14 +1,14 @@
 public class BallFollower implements PlayerInputProvider {
-   public PlayerInput in = new PlayerInput();
+   public PlayerInputImpl in = new PlayerInputImpl();
    public GameState game;
-   public Side side;
+   public SideImpl side;
 
-   public BallFollower(GameState game_, Side side_) {
+   public BallFollower(GameState game_, SideImpl side_) {
       game = game_;
       side = side_;
    }
 
-   public PlayerInput getInput() {
+   public PlayerInputImpl getInput() {
       PhysicsCircle ball = game.match.ball.pCircle, me = side.getPlayer(game).pCircle;
       long idealLocation = me.posX - side.translateX(me.radius/2);
       in.left = ball.posX < idealLocation;

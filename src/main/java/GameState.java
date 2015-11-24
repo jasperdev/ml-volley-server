@@ -21,7 +21,7 @@ public class GameState implements GameObserver {
    public void step() {
       match.step();
       if (match.matchFinished) {
-         match.ball.side = (match.ball.side == Side.LEFT) ? Side.RIGHT : Side.LEFT;
+         match.ball.side = (match.ball.side == SideImpl.LEFT) ? SideImpl.RIGHT : SideImpl.LEFT;
          match.reset();
       }
    }
