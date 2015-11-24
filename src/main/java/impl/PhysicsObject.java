@@ -1,7 +1,9 @@
+package impl;
+
 public class PhysicsObject {
-   long posX = 0, posY = 0;
-   long velX = 0, velY = 0;
-   long accX = 0, accY = 0;
+   public long posX = 0, posY = 0;
+   public long velX = 0, velY = 0;
+   public long accX = 0, accY = 0;
 
    public PhysicsObject() {}
 

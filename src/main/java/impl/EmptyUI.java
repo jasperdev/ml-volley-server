@@ -1,3 +1,5 @@
+package impl;
+
 public class EmptyUI implements UI {
    public void printState(GameState state) {
       System.err.printf("{lScore:%d,rScore:%d,lHits:%d,rHits:%d,",state.lScore,state.rScore,state.lHits,state.rHits);

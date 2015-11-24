@@ -1,3 +1,5 @@
+package impl;
+
 public class EmptyInputProvider implements PlayerInputProvider {
    PlayerInputImpl in = new PlayerInputImpl();
    int count = 0;

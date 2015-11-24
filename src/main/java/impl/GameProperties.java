@@ -1,3 +1,5 @@
+package impl;
+
 // These values are roughly the same as those in Blobby Volley.
 public class GameProperties {
    public long sideWidth = 400000;

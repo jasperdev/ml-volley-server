@@ -1,3 +1,5 @@
+package impl;
+
 public class CompositeUI implements UI {
    UI[] bases;
    public CompositeUI(UI... bases_) {

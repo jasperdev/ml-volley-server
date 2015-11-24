@@ -1,3 +1,5 @@
+package impl;
+
 public class BallStateImpl {
    public PhysicsProperties physics;
    public GameProperties game;
