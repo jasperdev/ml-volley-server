@@ -10,6 +10,15 @@ public class PhysicsObject {
       posY = y;
    }
 
+   public PhysicsObject(PhysicsObject o) {
+      posX = o.posX;
+      posY = o.posY;
+      velX = o.velX;
+      velY = o.velY;
+      accX = o.accX;
+      accY = o.accY;
+   }
+
    public void step() {
       // dx = a/2 * dt^2 + v * dt, dt = 1
       posX += accX/2 + velX;
@@ -17,5 +26,17 @@ public class PhysicsObject {
       // dv = a * dt
       velX += accX;
       velY += accY;
+   }
+
+   public PhysicsObject copy() {
+      return new PhysicsObject(this);
+   }
+
+   public PhysicsObject reflectX() {
+      PhysicsObject out = copy();
+      out.posX *= -1;
+      out.velX *= -1;
+      out.accX *= -1;
+      return out;
    }
 }

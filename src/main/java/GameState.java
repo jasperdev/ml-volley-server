@@ -1,4 +1,4 @@
-public class GameState implements GameObserver {
+public class GameState implements GameObserver, GameStateInterface {
    public static final int POINTS_TO_WIN = 21;
 
    public MatchState match;
@@ -19,7 +19,7 @@ public class GameState implements GameObserver {
    }
 
    public void step() {
-      match.step();
+      match.step(this);
       if (match.matchFinished) {
          match.ball.side = (match.ball.side == Side.LEFT) ? Side.RIGHT : Side.LEFT;
          match.reset();
@@ -44,4 +44,14 @@ public class GameState implements GameObserver {
          System.err.println("Unexpected Game Event: "+e);
       }
    }
+
+   public long getLPlayer()    { return match.lPlayer.pCircle; }
+   public int getLPlayerScore() { return lScore; }
+   public int getRPlayerHits() { return rHits; }
+
+   public long getRPlayer()    { return match.rPlayer.pCircle; }
+   public int getRPlayerScore() { return rScore; }
+   public int getLPlayerHits() { return lHits; }
+
+   public long getBall()    { return match.ball.pCircle; }
 }

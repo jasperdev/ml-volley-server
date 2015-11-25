@@ -31,8 +31,8 @@ public class PlayerState {
       pCircle.velX = pCircle.velY = 0;
    }
 
-   public void step() {
-      PlayerInput in = input.getInput();
+   public void step(GameState gstate) {
+      PlayerInput in = input.getInput(gstate);
       if (in.up) {
          if (pCircle.velY == 0) {
             pCircle.velY = physics.playerJumpVelocity;

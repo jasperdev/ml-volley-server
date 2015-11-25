@@ -41,10 +41,10 @@ public class MatchState {
       hitCount = Math.max(hitCount,0)+1;
    }
 
-   public void step() {
+   public void step(GameState gstate) {
       ball.step();
-      lPlayer.step();
-      rPlayer.step();
+      lPlayer.step(new FacadeGameState(gstate, false));
+      rPlayer.step(new FacadeGameState(gstate, true));
       if (ball.hitGround) {
          matchFinished = true;
          notifyObservers(ball.pCircle.posX > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);
