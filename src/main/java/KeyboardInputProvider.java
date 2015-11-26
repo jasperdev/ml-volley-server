@@ -1,7 +1,7 @@
 import java.awt.Component;
 import java.awt.event.*;
 
-public class KeyboardPlayerInputProvider implements PlayerInputProvider {
+public class KeyboardInputProvider implements PlayerInputProvider {
    public PlayerInput input = new PlayerInput();
    public char left, right, up;
 

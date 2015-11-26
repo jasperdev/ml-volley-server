@@ -1,4 +1,4 @@
-public class StaticPlayerInputProvider implements PlayerInputProvider {
+public class StaticInputProvider implements PlayerInputProvider {
    public PlayerInput in = new PlayerInput();
 
    @Override
