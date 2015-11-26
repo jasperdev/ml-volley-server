@@ -1,3 +1,5 @@
+package impl;
+
 // These values should be roughly the same as those in Blobby Volley.
 public class PhysicsProperties {
    public long playerMaxHeight = 250000;

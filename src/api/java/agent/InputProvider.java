@@ -1,0 +1,9 @@
+package agent;
+
+public interface InputProvider {
+
+    PlayerInput provide(GameSnapshot snapshot);
+
+    void resetMatch();
+
+}

@@ -1,8 +1,10 @@
+package impl;
+
 public class EmptyInputProvider implements PlayerInputProvider {
-   PlayerInput in = new PlayerInput();
+   PlayerInputImpl in = new PlayerInputImpl();
    int count = 0;
    @Override
-   public PlayerInput getInput() {
+   public PlayerInputImpl getInput() {
       count++;
       in.up ^= count % 100 == 20;
       //in.up ^= Math.random() > 0.9;
