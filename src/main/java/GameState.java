@@ -3,13 +3,17 @@ public class GameState implements GameObserver, GameStateInterface {
 
    public MatchState match;
 
+   public PlayerInputProvider lInputProvider, rInputProvider;
    public int lScore = 0, rScore = 0;
    public int lHits = 0, rHits = 0;
 
-   public GameState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
-      match = new MatchState(gameProps, physProps, lInput, rInput);
+   public GameState(GameProperties gameProps, PhysicsProperties physProps,
+         PlayerInputProvider lInputProvider_, PlayerInputProvider rInputProvider_) {
+      match = new MatchState(gameProps, physProps);
       match.addObserver(this);
 
+      lInputProvider = lInputProvider_;
+      rInputProvider = rInputProvider_;
       reset();
    }
 
@@ -19,7 +23,9 @@ public class GameState implements GameObserver, GameStateInterface {
    }
 
    public void step() {
-      match.step(this);
+      PlayerInput lInput = lInputProvider.getInput(this, Side.LEFT);
+      PlayerInput rInput = rInputProvider.getInput(this, Side.RIGHT);
+      match.step(lInput, rInput);
       if (match.matchFinished) {
          match.ball.side = (match.ball.side == Side.LEFT) ? Side.RIGHT : Side.LEFT;
          match.reset();
@@ -30,6 +36,7 @@ public class GameState implements GameObserver, GameStateInterface {
       return lScore == POINTS_TO_WIN || rScore == POINTS_TO_WIN;
    }
 
+   @Override
    public void observe(GameEvent e) {
       switch (e) {
       case SCORE_L:
@@ -45,13 +52,20 @@ public class GameState implements GameObserver, GameStateInterface {
       }
    }
 
-   public long getLPlayer()    { return match.lPlayer.pCircle; }
+   @Override
+   public PhysicsObjectInterface getLPlayer() { return match.lPlayer.pCircle; }
+   @Override
    public int getLPlayerScore() { return lScore; }
+   @Override
    public int getRPlayerHits() { return rHits; }
 
-   public long getRPlayer()    { return match.rPlayer.pCircle; }
+   @Override
+   public PhysicsObjectInterface getRPlayer() { return match.rPlayer.pCircle; }
+   @Override
    public int getRPlayerScore() { return rScore; }
+   @Override
    public int getLPlayerHits() { return lHits; }
 
-   public long getBall()    { return match.ball.pCircle; }
+   @Override
+   public PhysicsObjectInterface getBall() { return match.ball.pCircle; }
 }

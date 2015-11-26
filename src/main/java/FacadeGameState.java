@@ -3,33 +3,40 @@ public class FacadeGameState implements GameStateInterface {
    public int lPlayerScore, lPlayerHits;
    public int rPlayerScore, rPlayerHits;
 
-   public FacadeGameState(GameState source, boolean reflect) {
-      MatchState m = source.match;
-      if (!reflect) {
-         lPlayer = m.lPlayer.pCircle.copy();
-         rPlayer = m.rPlayer.pCircle.copy();
-         ball = m.ball.pCircle.copy();
-         lPlayerScore = source.lScore;
-         lPlayerHits = source.lHits;
-         rPlayerScore = source.rScore;
-         rPlayerHits = source.rHits;
+   public FacadeGameState(GameStateInterface source, boolean flip) {
+      if (!flip) {
+         lPlayer = source.getLPlayer().copy();
+         rPlayer = source.getRPlayer().copy();
+         ball = source.getBall().copy();
+         lPlayerScore = source.getLPlayerScore();
+         lPlayerHits = source.getLPlayerHits();
+         rPlayerScore = source.getRPlayerScore();
+         rPlayerHits = source.getRPlayerHits();
       } else {
-         lPlayer = m.rPlayer.pCircle.reflectX();
-         rPlayer = m.lPlayer.pCircle.reflectX();
-         ball = m.ball.pCircle.reflectX();
-         lPlayerScore = source.rScore;
-         lPlayerHits = source.rHits;
-         rPlayerScore = source.lScore;
-         rPlayerHits = source.lHits;
+         lPlayer = source.getLPlayer().flipX();
+         rPlayer = source.getRPlayer().flipX();
+         ball = source.getBall().flipX();
+         lPlayerScore = source.getRPlayerScore();
+         lPlayerHits = source.getRPlayerHits();
+         rPlayerScore = source.getLPlayerScore();
+         rPlayerHits = source.getLPlayerHits();
       }
    }
-   public PhysicsObject getLPlayer()    { return lPlayer; }
+
+   @Override
+   public PhysicsObjectInterface getLPlayer() { return lPlayer; }
+   @Override
    public int getLPlayerScore() { return lPlayerScore; }
+   @Override
    public int getLPlayerHits() { return lPlayerHits; }
 
-   public PhysicsObject getRPlayer()    { return rPlayer; }
+   @Override
+   public PhysicsObjectInterface getRPlayer() { return rPlayer; }
+   @Override
    public int getRPlayerScore() { return rPlayerScore; }
+   @Override
    public int getRPlayerHits() { return rPlayerHits; }
 
-   public PhysicsObject getBall()    { return ball; }
+   @Override
+   public PhysicsObjectInterface getBall() { return ball; }
 }

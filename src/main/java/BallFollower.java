@@ -1,19 +1,22 @@
-public class BallFollower implements PlayerInputProvider {
-   public PlayerInput in = new PlayerInput();
-   public GameState game;
-   public Side side;
+public class BallFollower extends AbstractPlayerInputProvider {
+   public long offset;
 
-   public BallFollower(GameState game_, Side side_) {
-      game = game_;
-      side = side_;
+   public BallFollower(long offset_) {
+      offset = offset_;
    }
 
-   public PlayerInput getInput() {
-      PhysicsCircle ball = game.match.ball.pCircle, me = side.getPlayer(game).pCircle;
-      long idealLocation = me.posX - side.translateX(me.radius/2);
-      in.left = ball.posX < idealLocation;
-      in.right = ball.posX > idealLocation;
-      in.up = ball.posY > me.posY * 3;
-      return in;
+   @Override
+   public PlayerInput getInput(GameStateInterface state) {
+      PhysicsObjectInterface ball = state.getBall(), me = state.getLPlayer();
+
+      long x = me.getPosX(), y = me.getPosY();
+      long bx = ball.getPosX(), by = ball.getPosY();
+      long idealLocation = bx - offset;
+
+      boolean left = x > idealLocation;
+      boolean right = x < idealLocation;
+      boolean up = by > y * 3;
+
+      return new PlayerInput(left, right, up);
    }
 }

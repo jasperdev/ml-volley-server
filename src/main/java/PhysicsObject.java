@@ -1,4 +1,4 @@
-public class PhysicsObject {
+public class PhysicsObject implements PhysicsObjectInterface {
    long posX = 0, posY = 0;
    long velX = 0, velY = 0;
    long accX = 0, accY = 0;
@@ -28,15 +28,26 @@ public class PhysicsObject {
       velY += accY;
    }
 
+   @Override
    public PhysicsObject copy() {
       return new PhysicsObject(this);
    }
 
-   public PhysicsObject reflectX() {
+   @Override
+   public PhysicsObject flipX() {
       PhysicsObject out = copy();
       out.posX *= -1;
       out.velX *= -1;
       out.accX *= -1;
       return out;
    }
+
+   @Override
+   public long getPosX() { return posX; }
+   @Override
+   public long getVelX() { return velX; }
+   @Override
+   public long getPosY() { return posY; }
+   @Override
+   public long getVelY() { return velY; }
 }

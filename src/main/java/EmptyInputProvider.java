@@ -1,14 +1,13 @@
 public class EmptyInputProvider implements PlayerInputProvider {
    PlayerInput in = new PlayerInput();
    int count = 0;
+
    @Override
-   public PlayerInput getInput() {
+   public PlayerInput getInput(GameState state, Side side) {
       count++;
-      in.up ^= count % 100 == 20;
-      //in.up ^= Math.random() > 0.9;
-      //in.left ^= Math.random() > 0.9;
-      //in.right ^= Math.random() > 0.9;
-      //System.err.println(in.up+" "+in.left+" "+in.right);
+      in.up ^= Math.random() > 0.9;
+      in.left ^= Math.random() > 0.9;
+      in.right ^= Math.random() > 0.9;
       return in;
    }
 }

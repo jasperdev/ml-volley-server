@@ -40,12 +40,14 @@ public class GameLoop {
       GameProperties gameProps = new GameProperties();
       PhysicsProperties physProps = new PhysicsProperties();
 
-      StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
-      BallFollower ai = new BallFollower(null, Side.RIGHT);
-      UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps, lInput, null));
+      //StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
+      SwingUI ui = new SwingUI(gameProps);
+      //PlayerInputProvider lInput = new BallFollower(gameProps.playerRadius/2);
+      PlayerInputProvider lInput = new KeyboardPlayerInputProvider(ui, 'a', 'd', 'w');
+      PlayerInputProvider rInput = new BallFollower(gameProps.playerRadius/2);
+      //PlayerInputProvider rInput = new KeyboardPlayerInputProvider(ui, 'j', 'l', 'i');
 
-      GameState game = new GameState(gameProps, physProps, lInput, ai);
-      ai.game = game;
+      GameState game = new GameState(gameProps, physProps, lInput, rInput);
 
       run(60, ui, game);
    }

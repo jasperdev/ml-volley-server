@@ -3,22 +3,16 @@ public class PlayerState {
    public GameProperties game;
    public Side side;
 
-   public PlayerInputProvider input;
-   
    public long sideWidth, playerRadius;
-   public boolean playerBounce;
 
    public PhysicsCircle pCircle;
 
-   public PlayerState(Side side_, PlayerInputProvider input_, GameProperties gameProps, PhysicsProperties physProps) {
+   public PlayerState(Side side_, GameProperties gameProps, PhysicsProperties physProps) {
       physics = physProps;
       game = gameProps;
       side = side_;
       
-      input = input_;
-
       sideWidth = game.sideWidth;
-      playerBounce = physics.playerBounce;
 
       pCircle = new PhysicsCircle(game.playerRadius);
 
@@ -31,8 +25,7 @@ public class PlayerState {
       pCircle.velX = pCircle.velY = 0;
    }
 
-   public void step(GameState gstate) {
-      PlayerInput in = input.getInput(gstate);
+   public void step(PlayerInput in) {
       if (in.up) {
          if (pCircle.velY == 0) {
             pCircle.velY = physics.playerJumpVelocity;
@@ -47,7 +40,7 @@ public class PlayerState {
 
       pCircle.step();
 
-      pCircle.collideFloor(0, playerBounce);
+      pCircle.collideFloor(0, false);
       pCircle.collideVertPlane(0, false);
       pCircle.collideVertPlane(-sideWidth, false);
       pCircle.collideVertPlane(sideWidth, false);
