@@ -5,6 +5,9 @@ import agent.InputProvider;
 import control.GameMonitor;
 
 public class DefaultGameMonitor implements GameMonitor {
+
+    private static final int POINTS_TO_WIN = 21;
+
     private final GameProperties props;
 
     public DefaultGameMonitor(GameProperties props) {
@@ -34,5 +37,10 @@ public class DefaultGameMonitor implements GameMonitor {
     @Override
     public Progress onMatchStep(GameSnapshot previousState, GameSnapshot nextState) {
         return Progress.CONTINUE;
+    }
+
+    @Override
+    public boolean isFinished(GameSnapshot snapshot) {
+        return snapshot.myScore() >= POINTS_TO_WIN || snapshot.opponentScore() >= POINTS_TO_WIN;
     }
 }

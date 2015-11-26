@@ -15,6 +15,8 @@ public interface GameMonitor {
 
     Progress onMatchStep(GameSnapshot previousState, GameSnapshot nextState);
 
+    boolean isFinished(GameSnapshot snapshot);
+
     enum Progress {
         STOP,
         CONTINUE,

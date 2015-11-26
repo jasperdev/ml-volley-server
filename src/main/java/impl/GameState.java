@@ -6,7 +6,6 @@ import state.ImmutableSnapshot;
 
 public class GameState implements GameObserver {
 
-    public static final int POINTS_TO_WIN = 21;
     private final GameMonitor monitor;
 
     public MatchState match;
@@ -50,7 +49,7 @@ public class GameState implements GameObserver {
     }
 
     public boolean isFinished() {
-        return lScore == POINTS_TO_WIN || rScore == POINTS_TO_WIN;
+        return monitor.isFinished(currentSnapshot);
     }
 
     public void observe(GameEvent e) {
