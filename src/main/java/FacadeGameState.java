@@ -13,8 +13,8 @@ public class FacadeGameState implements GameStateInterface {
          rPlayerScore = source.getRPlayerScore();
          rPlayerHits = source.getRPlayerHits();
       } else {
-         lPlayer = source.getLPlayer().flipX();
-         rPlayer = source.getRPlayer().flipX();
+         lPlayer = source.getRPlayer().flipX();
+         rPlayer = source.getLPlayer().flipX();
          ball = source.getBall().flipX();
          lPlayerScore = source.getRPlayerScore();
          lPlayerHits = source.getRPlayerHits();

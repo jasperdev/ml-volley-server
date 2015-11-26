@@ -43,9 +43,9 @@ public class GameLoop {
       //StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
       SwingUI ui = new SwingUI(gameProps);
       //PlayerInputProvider lInput = new BallFollower(gameProps.playerRadius/2);
-      PlayerInputProvider lInput = new KeyboardPlayerInputProvider(ui, 'a', 'd', 'w');
+      PlayerInputProvider lInput = new KeyboardInputProvider(ui, 'a', 'd', 'w');
       PlayerInputProvider rInput = new BallFollower(gameProps.playerRadius/2);
-      //PlayerInputProvider rInput = new KeyboardPlayerInputProvider(ui, 'j', 'l', 'i');
+      //PlayerInputProvider rInput = new KeyboardInputProvider(ui, 'j', 'l', 'i');
 
       GameState game = new GameState(gameProps, physProps, lInput, rInput);
 

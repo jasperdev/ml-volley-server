@@ -5,7 +5,7 @@ public class KeyboardInputProvider implements PlayerInputProvider {
    public PlayerInput input = new PlayerInput();
    public char left, right, up;
 
-   public KeyboardPlayerInputProvider(Component c, char left_, char right_, char up_) {
+   public KeyboardInputProvider(Component c, char left_, char right_, char up_) {
       left = left_;
       right = right_;
       up = up_;
