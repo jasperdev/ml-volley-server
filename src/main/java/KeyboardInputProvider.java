@@ -14,7 +14,7 @@ public class KeyboardInputProvider implements PlayerInputProvider {
    }
 
    @Override
-   public PlayerInput getInput(GameState state, Side side) {
+   public PlayerInput getInput(GameStateInterface state, Side side) {
       return input;
    }
 

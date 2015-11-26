@@ -3,7 +3,7 @@ public class EmptyInputProvider implements PlayerInputProvider {
    int count = 0;
 
    @Override
-   public PlayerInput getInput(GameState state, Side side) {
+   public PlayerInput getInput(GameStateInterface state, Side side) {
       count++;
       in.up ^= Math.random() > 0.9;
       in.left ^= Math.random() > 0.9;

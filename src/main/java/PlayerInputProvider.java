@@ -1,3 +1,3 @@
 public interface PlayerInputProvider {
-   public PlayerInput getInput(GameState state, Side side);
+   public PlayerInput getInput(GameStateInterface state, Side side);
 }
