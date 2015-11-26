@@ -1,3 +1,13 @@
+
+import server.GameLoop;
+import server.GameProperties;
+import server.GameState;
+import server.PhysicsProperties;
+import ui.SwingUI;
+import agent.BallFollower;
+import agent.KeyboardInputProvider;
+import agent.PlayerInputProvider;
+
 public class Bootstrap {
    public static void main(String[] args) {
       GameProperties gameProps = new GameProperties();
