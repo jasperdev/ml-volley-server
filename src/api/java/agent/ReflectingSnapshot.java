@@ -2,7 +2,7 @@ package agent;
 
 import java.util.Objects;
 
-public class ReflectingSnapshot implements GameSnapshot {
+class ReflectingSnapshot implements GameSnapshot {
 
     private final GameSnapshot backend;
 
