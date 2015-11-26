@@ -34,7 +34,7 @@ public class PhysicsObject implements PhysicsObjectInterface {
    }
 
    @Override
-   public PhysicsObject flipX() {
+   public PhysicsObject flippedCopy() {
       PhysicsObject out = copy();
       out.posX *= -1;
       out.velX *= -1;

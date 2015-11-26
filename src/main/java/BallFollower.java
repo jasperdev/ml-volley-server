@@ -7,7 +7,7 @@ public class BallFollower extends AlwaysLeftInputProvider {
 
    @Override
    public PlayerInput getInput(GameStateInterface state) {
-      PhysicsObjectInterface ball = state.getBall(), me = state.getLPlayer();
+      PhysicsObjectInterface ball = state.getBall(), me = state.getMe();
 
       long x = me.getPosX(), y = me.getPosY();
       long bx = ball.getPosX(), by = ball.getPosY();

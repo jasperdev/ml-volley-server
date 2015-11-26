@@ -9,5 +9,5 @@ public class PlayerInput {
       up = up_;
    }
 
-   public PlayerInput flipX() { return new PlayerInput(right, left, up); }
+   public PlayerInput flippedCopy() { return new PlayerInput(right, left, up); }
 }

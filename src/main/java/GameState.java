@@ -53,18 +53,18 @@ public class GameState implements GameObserver, GameStateInterface {
    }
 
    @Override
-   public PhysicsObjectInterface getLPlayer() { return match.lPlayer.pCircle; }
+   public PhysicsObjectInterface getMe() { return match.lPlayer.pCircle; }
    @Override
-   public int getLPlayerScore() { return lScore; }
+   public int getMyScore() { return lScore; }
    @Override
-   public int getRPlayerHits() { return rHits; }
+   public int getMyHits() { return lHits; }
 
    @Override
-   public PhysicsObjectInterface getRPlayer() { return match.rPlayer.pCircle; }
+   public PhysicsObjectInterface getOpponent() { return match.rPlayer.pCircle; }
    @Override
-   public int getRPlayerScore() { return rScore; }
+   public int getOpponentScore() { return rScore; }
    @Override
-   public int getLPlayerHits() { return lHits; }
+   public int getOpponentHits() { return rHits; }
 
    @Override
    public PhysicsObjectInterface getBall() { return match.ball.pCircle; }

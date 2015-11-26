@@ -1,11 +1,11 @@
 public interface GameStateInterface {
-   public PhysicsObjectInterface getLPlayer();
-   public int getLPlayerScore();
-   public int getLPlayerHits();
+   public PhysicsObjectInterface getMe();
+   public int getMyScore();
+   public int getMyHits();
 
-   public PhysicsObjectInterface getRPlayer();
-   public int getRPlayerScore();
-   public int getRPlayerHits();
+   public PhysicsObjectInterface getOpponent();
+   public int getOpponentScore();
+   public int getOpponentHits();
 
    public PhysicsObjectInterface getBall();
 }

@@ -1,10 +1,10 @@
 public abstract class AlwaysLeftInputProvider implements PlayerInputProvider {
    @Override
-   public PlayerInput getInput(GameStateInterface state, Side side) {
+   public final PlayerInput getInput(GameStateInterface state, Side side) {
       if (side == Side.LEFT) {
-         return getInput(new FacadeGameState(state, false));
+         return getInput(new GameStateSnapshot(state, false));
       } else {
-         return getInput(new FacadeGameState(state, true)).flipX();
+         return getInput(new GameStateSnapshot(state, true)).flippedCopy();
       }
    }
 

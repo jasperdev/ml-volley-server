@@ -3,6 +3,6 @@ public interface PhysicsObjectInterface {
    public long getVelX();
    public long getPosY();
    public long getVelY();
-   public PhysicsObject flipX();
+   public PhysicsObject flippedCopy();
    public PhysicsObject copy();
 }
