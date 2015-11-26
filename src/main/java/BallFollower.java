@@ -1,4 +1,4 @@
-public class BallFollower extends AbstractInputProvider {
+public class BallFollower extends AlwaysLeftInputProvider {
    public long offset;
 
    public BallFollower(long offset_) {

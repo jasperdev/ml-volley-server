@@ -1,4 +1,4 @@
-public abstract class AbstractInputProvider implements PlayerInputProvider {
+public abstract class AlwaysLeftInputProvider implements PlayerInputProvider {
    @Override
    public PlayerInput getInput(GameStateInterface state, Side side) {
       if (side == Side.LEFT) {
