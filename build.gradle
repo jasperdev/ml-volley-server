@@ -1,4 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
+
+mainClassName = "Bootstrap"
+
+jar {
+   manifest {
+      attributes "Main-Class": mainClassName
+   }
+}
