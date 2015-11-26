@@ -3,7 +3,7 @@ public class GameStateSnapshot implements GameStateInterface {
    public int myScore, myHits;
    public int opponentScore, opponentHits;
 
-   public FacadeGameState(GameStateInterface source, boolean flip) {
+   public GameStateSnapshot(GameStateInterface source, boolean flip) {
       if (!flip) {
          me = source.getMe().copy();
          opponent = source.getOpponent().copy();
