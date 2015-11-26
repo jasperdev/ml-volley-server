@@ -12,9 +12,9 @@ public class MatchState {
    public EnumMap<GameEvent, Collection<GameObserver>> observerMap = new EnumMap<GameEvent, Collection<GameObserver>>(GameEvent.class);
    public Collection<GameObserver> globalObservers = new ArrayList<GameObserver>();
 
-   public MatchState(GameProperties gameProps, PhysicsProperties physProps, PlayerInputProvider lInput, PlayerInputProvider rInput) {
-      lPlayer = new PlayerState(Side.LEFT, lInput, gameProps, physProps);
-      rPlayer = new PlayerState(Side.RIGHT, rInput, gameProps, physProps);
+   public MatchState(GameProperties gameProps, PhysicsProperties physProps) {
+      lPlayer = new PlayerState(Side.LEFT, gameProps, physProps);
+      rPlayer = new PlayerState(Side.RIGHT, gameProps, physProps);
       ball = new BallState(gameProps, physProps);
 
       maxHits = gameProps.maxHits;
@@ -41,10 +41,11 @@ public class MatchState {
       hitCount = Math.max(hitCount,0)+1;
    }
 
-   public void step() {
+   public void step(PlayerInput lInput, PlayerInput rInput) {
       ball.step();
-      lPlayer.step();
-      rPlayer.step();
+      lPlayer.step(lInput);
+      rPlayer.step(rInput);
+
       if (ball.hitGround) {
          matchFinished = true;
          notifyObservers(ball.pCircle.posX > 0 ? GameEvent.SCORE_L : GameEvent.SCORE_R);

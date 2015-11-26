@@ -1,8 +1,20 @@
+import java.util.concurrent.TimeUnit;
+
 public class GameLoop {
-   private final static int NS_PER_SEC = 1000000000;
-   private final static long MS_PER_SEC = 1000;
-   
-   public static void run(int maxFps, UI ui, GameState state) {
+   private final static long NS_PER_SEC = TimeUnit.SECONDS.toNanos(1);
+   private final static long MS_PER_SEC = TimeUnit.SECONDS.toMillis(1);
+
+   public int maxFps;
+   public UI ui;
+   public GameState state;
+
+   public GameLoop(int maxFps_, UI ui_, GameState state_) {
+      maxFps = maxFps_;
+      ui = ui_;
+      state = state_;
+   }
+
+   public void run() {
       final long framePeriod = NS_PER_SEC / maxFps;
       
       ui.init(state);
@@ -34,19 +46,5 @@ public class GameLoop {
       }
       
       ui.finish(state);
-   }
-
-   public static void main(String[] args) {
-      GameProperties gameProps = new GameProperties();
-      PhysicsProperties physProps = new PhysicsProperties();
-
-      StaticPlayerInputProvider lInput = new StaticPlayerInputProvider();
-      BallFollower ai = new BallFollower(null, Side.RIGHT);
-      UI ui = new CompositeUI(new EmptyUI(), new SwingUI(gameProps, lInput, null));
-
-      GameState game = new GameState(gameProps, physProps, lInput, ai);
-      ai.game = game;
-
-      run(60, ui, game);
    }
 }

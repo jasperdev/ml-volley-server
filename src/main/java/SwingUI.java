@@ -2,10 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class SwingUI extends JFrame implements UI {
-   GameProperties gameProps;
-   public int width, height;
-   PlayerInput lIn, rIn;
-
    class GamePanel extends JComponent {
       public GamePanel(GameProperties gameProps_) {
          gameProps = gameProps_;
@@ -30,6 +26,7 @@ public class SwingUI extends JFrame implements UI {
          return (int)(r/1000);
       }
 
+      @Override
       public void paintComponent(Graphics g) {
          super.paintComponent(g);
          paintState(g);
@@ -74,13 +71,12 @@ public class SwingUI extends JFrame implements UI {
       }
    }
 
+   GameProperties gameProps;
+   public int width, height;
+
    GamePanel gpanel;
 
-   public SwingUI(GameProperties gameProps, StaticPlayerInputProvider lInput, StaticPlayerInputProvider rInput) {
-      lIn = lInput == null ? null : lInput.in;
-      rIn = rInput == null ? null : rInput.in;
-      addKeyListener(new GameKeyListener());
-
+   public SwingUI(GameProperties gameProps) {
       gpanel = new GamePanel(gameProps);
       Container content = getContentPane();
       content.setLayout(new BorderLayout());
@@ -104,49 +100,4 @@ public class SwingUI extends JFrame implements UI {
 
    @Override
    public void finish(GameState state) { }
-
-   public class GameKeyListener extends KeyAdapter {
-      public void keyPressed(KeyEvent e) {
-         char c = e.getKeyChar();
-         if (lIn != null) {
-            if (c == 'a') {
-               lIn.left = true;
-            } else if (c == 'd') {
-               lIn.right = true;
-            } else if (c == 'w') {
-               lIn.up = true;
-            }
-         }
-         if (rIn != null) {
-            if (c == 'j') {
-               lIn.left = true;
-            } else if (c == 'l') {
-               lIn.right = true;
-            } else if (c == 'i') {
-               lIn.up = true;
-            }
-         }
-      }
-      public void keyReleased(KeyEvent e) {
-         char c = e.getKeyChar();
-         if (lIn != null) {
-            if (c == 'a') {
-               lIn.left = false;
-            } else if (c == 'd') {
-               lIn.right = false;
-            } else if (c == 'w') {
-               lIn.up = false;
-            }
-         }
-         if (rIn != null) {
-            if (c == 'j') {
-               lIn.left = false;
-            } else if (c == 'l') {
-               lIn.right = false;
-            } else if (c == 'i') {
-               lIn.up = false;
-            }
-         }
-      }
-   }
 }

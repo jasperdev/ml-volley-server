@@ -16,9 +16,6 @@ public class PhysicsProperties {
    // Horizontal movement speed when a player presses the Left or Right key.
    public long playerHorizontalSpeed = 4500;
 
-   // Fun parameter... should players "bounce" off the floor?
-   public boolean playerBounce = false;
-
    // Gravity that affects the ball. This should be positive.
    public long ballGravity = 287;
 
