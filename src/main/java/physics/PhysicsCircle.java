@@ -11,6 +11,44 @@ public class PhysicsCircle extends PhysicsObject {
       radius = radius_;
    }
 
+   public boolean collideLeftWall(long x, boolean elastic) {
+      if (posX - radius > x) {
+         return false;
+      }
+
+      System.out.println("Here "+posX+" "+velX);
+      if (!elastic) {
+         posX = x + radius;
+         velX = 0;
+      } else {
+         posX = 2*(x+radius) - posX;
+         if (velX < 0) {
+            velX *= -1;
+         }
+      }
+      System.out.println("Here After "+posX+" "+velX);
+
+      return true;
+   }
+
+   public boolean collideRightWall(long x, boolean elastic) {
+      if (posX + radius < x) {
+         return false;
+      }
+
+      if (!elastic) {
+         posX = x - radius;
+         velX = 0;
+      } else {
+         posX = 2*(x-radius) - posX;
+         if (velX > 0) {
+            velX *= -1;
+         }
+      }
+
+      return true;
+   }
+
    public boolean collideFloor(long y, boolean elastic) {
       if (posY > y + radius) {
          return false;

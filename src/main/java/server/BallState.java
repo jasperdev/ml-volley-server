@@ -42,14 +42,19 @@ public class BallState {
       if (firstHit) {
          return;
       }
+      long prevX = pCircle.posX;
 
       pCircle.step();
 
       hitGround |= pCircle.collideFloor(0, true);
-      pCircle.collideVertPlane(minX, true);
-      pCircle.collideVertPlane(maxX, true);
+      pCircle.collideLeftWall(minX, true);
+      pCircle.collideRightWall(maxX, true);
       if (pCircle.posY <= netHeight) {
-         pCircle.collideVertPlane(0, true);
+         if (prevX < 0) {
+            pCircle.collideRightWall(0, true);
+         } else {
+            pCircle.collideLeftWall(0, true);
+         }
       } else {
          pCircle.collideCircle(0, netHeight, 0, 0);
       }
