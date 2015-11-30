@@ -16,7 +16,6 @@ public class PhysicsCircle extends PhysicsObject {
          return false;
       }
 
-      System.out.println("Here "+posX+" "+velX);
       if (!elastic) {
          posX = x + radius;
          velX = 0;
@@ -26,7 +25,6 @@ public class PhysicsCircle extends PhysicsObject {
             velX *= -1;
          }
       }
-      System.out.println("Here After "+posX+" "+velX);
 
       return true;
    }
