@@ -11,4 +11,6 @@ public class GameProperties {
    public long playerRadius = 30000;
 
    public int maxHits = 4;
+
+   public int autoDropFrames = 600;
 }

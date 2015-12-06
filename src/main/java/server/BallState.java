@@ -11,6 +11,8 @@ public class BallState {
    public boolean hitGround = false;
    public Side side;
 
+   public int frameCount;
+
    public PhysicsCircle pCircle;
 
    public BallState(GameProperties gameProps, PhysicsProperties physProps) {
@@ -34,13 +36,17 @@ public class BallState {
       pCircle.posX = side.translateX(initX);
       pCircle.posY = initY;
       pCircle.velX = pCircle.velY = 0;
+      frameCount = game.autoDropFrames;
       firstHit = true;
       hitGround = false;
    }
 
    public void step() {
-      if (firstHit) {
-         return;
+      if (frameCount > 0) {
+         frameCount--;
+         if (firstHit) {
+            return;
+         }
       }
       long prevX = pCircle.posX;
 
