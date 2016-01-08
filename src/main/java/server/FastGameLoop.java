@@ -6,16 +6,16 @@ import ui.UI;
 public class FastGameLoop {
 
     public GameState state;
+    public int iterations = 0;
 
     public FastGameLoop(GameState state_) {
         state = state_;
     }
 
     public void run() {
-        long startTime = System.currentTimeMillis();
         while (!state.isFinished()) {
             state.step();
+            iterations++;
         }
-        long endTime = System.currentTimeMillis();
     }
 }

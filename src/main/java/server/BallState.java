@@ -19,6 +19,7 @@ public class BallState {
       physics = physProps;
       game = gameProps;
 
+      //initX = game.ballInitX;
       initX = game.ballInitX;
       initY = game.ballInitY;
       minX = -game.sideWidth;
@@ -33,6 +34,7 @@ public class BallState {
    }
 
    public void reset() {
+      //pCircle.posX = side.translateX(game.getBallInitX());
       pCircle.posX = side.translateX(initX);
       pCircle.posY = initY;
       pCircle.velX = pCircle.velY = 0;

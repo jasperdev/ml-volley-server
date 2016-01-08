@@ -4,7 +4,7 @@ import agent.PlayerInputProvider;
 import physics.PhysicsObjectInterface;
 
 public class GameState implements GameObserver, GameStateInterface {
-   public static final int POINTS_TO_WIN = 21;
+   public static final int POINTS_TO_WIN = 50;
 
    public MatchState match;
 

@@ -21,7 +21,7 @@ public class GameLoop {
       final long framePeriod = NS_PER_SEC / maxFps;
       
       ui.init(state);
-      
+
       while (!state.isFinished()) {
          long beginTime = System.nanoTime();
          
@@ -47,7 +47,7 @@ public class GameLoop {
             state.step();
          }
       }
-      
+
       ui.finish(state);
    }
 }
