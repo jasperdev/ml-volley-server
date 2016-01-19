@@ -12,7 +12,7 @@ public class SwingUI extends JFrame implements UI {
       public GamePanel(GameProperties gameProps_) {
          gameProps = gameProps_;
          width = (int)(gameProps.sideWidth*2 / 1000);
-         height = (int)(gameProps.netHeight*3 / 1000);
+         height = (int)(800000 / 1000);
 
          setPreferredSize(new Dimension(width, height));
          setBackground(Color.white);
